@@ -1,0 +1,6 @@
+<ul>
+  <li *ngFor="let file of files" (click)="onSelect(file)">
+    <img src="{{ file.icon }}" alt="file" />
+    {{ file.name }}
+  </li>
+</ul>

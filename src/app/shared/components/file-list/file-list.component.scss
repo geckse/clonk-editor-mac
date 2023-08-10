@@ -1,0 +1,20 @@
+:host {
+    ul {
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+        li {
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            img {
+                width: 32px;
+                height: 32px;
+                margin-right: 10px;
+            }
+            &:hover {
+                background-color: var(--color-light-tint);
+            }
+        }
+    }
+}

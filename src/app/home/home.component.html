@@ -1,0 +1,28 @@
+<div class="container">
+
+  <div class="main-frame">
+
+    <div class="left-bar box scroll-y">
+      <app-file-list [files]="files" (selected)="onFileSelected($event)"></app-file-list>
+    </div>
+    
+    <main class="editor">
+      <div class="preview box">
+
+      </div>
+      <div class="frame box">
+        <h1>test</h1>
+      </div>
+    </main>
+
+
+  </div>
+
+  <div class="bottom-bar">
+    <input [(ngModel)]="engineInput" class="engine-input" type="text">
+    
+    <button class="engine-start" (click)="submitEngineCall()">Starten</button>
+  
+  </div>
+
+</div>

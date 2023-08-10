@@ -1,0 +1,130 @@
+:root {
+  --background: #ffffff;
+
+	--color-medium: #92949c;
+	--color-medium-rgb: 146,148,156;
+	--color-medium-contrast: #000000;
+	--color-medium-contrast-rgb: 0,0,0;
+	--color-medium-shade: #808289;
+	--color-medium-tint: #9d9fa6;
+
+	--color-light: #f4f5f8;
+	--color-light-rgb: 244,245,248;
+	--color-light-contrast: #000000;
+	--color-light-contrast-rgb: 0,0,0;
+	--color-light-shade: #d7d8da;
+	--color-light-tint: #f5f6f9;
+
+	--color-dark: #424242;
+	--color-dark-rgb: 66,66,66;
+	--color-dark-contrast: #ffffff;
+	--color-dark-contrast-rgb: 255,255,255;
+	--color-dark-shade: #3a3a3a;
+	--color-dark-tint: #555555;
+
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+
+  background-image: url("assets/bg.jpg");
+  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  background-size: cover; /* version standardisée */
+
+}
+
+input {
+  padding: 4px 8px;
+  outline: 0;
+  border: 1px solid var(--color-medium-tint);
+}
+
+.container {
+  height: 100vh;
+  max-height: calc(100vh - 40px);
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+
+  .main-frame {
+    width: 100%;
+    height: calc(100% - 30px);
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+  }
+
+  .editor {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    > * {
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .preview {
+      height: 300px;
+    }
+
+    .frame {
+      height: 100%;
+    }
+
+  }
+
+  .left-bar {
+    position: relative;
+    max-width: 380px;
+    height: 100%;
+    margin-right: 10px;
+  }
+
+  .bottom-bar {
+    padding-top: 10px;
+    height: 30px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+
+    .engine-input {
+      width: 100%;
+    }
+    .engine-start {
+      margin-left: 15px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+  }
+
+}
+
+
+.box {
+  background-color: var(--background);
+  border: 1px solid var(--color-medium-tint);
+  box-shadow: inset 0 0 10px rgba(var(--color-dark-rgb),0.4);
+}
+
+.scroll-y {
+  overflow-y: auto;
+}
