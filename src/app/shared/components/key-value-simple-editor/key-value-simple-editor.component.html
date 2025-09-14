@@ -1,0 +1,90 @@
+<div class="key-value-simple-editor">
+  <!-- Field list -->
+  <ul 
+    dragula="KEY-VALUE-SIMPLE-EDITOR" 
+    [(dragulaModel)]="fields" 
+    (moves)="movement($event)" 
+    class="field-list"
+    [class.no-reorder]="!config.allowReordering">
+    
+    <li *ngFor="let field of fields; let i = index; trackBy: trackByField" 
+        class="field-row"
+        [class.valid]="isFieldValid(field)"
+        [class.invalid]="!isFieldValid(field) && field.key.length > 0"
+        [class.documentation-enabled]="showDocumentationFeatures">
+        
+        <div class="drag-handle" *ngIf="config.allowReordering">&#8942;</div>
+        
+        <!-- Key field -->
+        <div class="cell key-cell"
+             [class.with-suggestions]="showDocumentationFeatures"
+             (mouseenter)="onFieldMouseEnter(field)"
+             (mouseleave)="onFieldMouseLeave()">
+             
+          <!-- Smart input with dropdown suggestions for key -->
+          <app-smart-field-input
+            *ngIf="showDocumentationFeatures"
+            [value]="field.key"
+            [documentationType]="config.documentationType!"
+            [section]="config.section!"
+            [placeholder]="'Field name...'"
+            [cssClass]="'key-input'"
+            [showSuggestions]="true"
+            (valueCommit)="onFieldKeyChange(i, $event)"
+            (fieldSelected)="onFieldSelected(i, $event)"
+            #keyInput>
+          </app-smart-field-input>
+          
+          <!-- Regular input when no documentation -->
+          <input
+            *ngIf="!showDocumentationFeatures"
+            type="text"
+            class="key-input"
+            [value]="field.key"
+            placeholder="Key..."
+            (blur)="onFieldKeyChange(i, $any($event.target).value)"
+            #keyInput>
+          
+          <!-- Tooltip for documentation -->
+          <app-field-tooltip
+            *ngIf="showDocumentationFeatures"
+            [fieldDocumentation]="field.fieldInfo || null"
+            [fieldName]="field.key"
+            [visible]="tooltipVisible && hoveredField === field"
+            position="top">
+          </app-field-tooltip>
+        </div>
+        
+        <!-- Separator display -->
+        <div class="separator">{{ separatorDisplay }}</div>
+        
+        <!-- Value field -->
+        <div class="cell value-cell">
+          <input
+            type="text"
+            class="value-input"
+            [value]="field.value"
+            placeholder="Value..."
+            (blur)="onFieldValueChange(i, $any($event.target).value)"
+            #valueInput>
+        </div>
+        
+        <!-- Remove button -->
+        <div class="cell action-cell" *ngIf="config.showAddRemoveButtons">
+          <button 
+            class="remove-button"
+            (click)="removeField(i)"
+            title="Remove field">
+            ×
+          </button>
+        </div>
+    </li>
+  </ul>
+  
+  <!-- Add new field button -->
+  <div class="add-field-section" *ngIf="config.showAddRemoveButtons">
+    <button class="add-field-button" (click)="addNewField()">
+      + Add Field
+    </button>
+  </div>
+</div>

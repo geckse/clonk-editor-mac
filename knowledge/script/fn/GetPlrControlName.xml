@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+    <func>
+        <title>GetPlrControlName</title>
+        <category>Spieler</category>
+        <version>4.9.7.0 CR</version>
+        <syntax>
+            <rtype>string</rtype>
+            <params>
+                <param><type>int</type><name>iPlr</name><desc>Spieler, dessen Taste gesucht wird.</desc></param>
+				<param><type>int</type><name>iCon</name><desc>Taste, die gesucht wird. Folgende Werte sind möglich:
+					<table>
+						<rowh><col>Name</col><col>Wert</col></rowh>
+						<row><col>CON_CursorLeft</col><col>0</col></row>
+						<row><col>CON_CursorToggle</col><col>1</col></row>
+						<row><col>CON_CursorRight</col><col>2</col></row>
+						<row><col>CON_Throw</col><col>3</col></row>
+						<row><col>CON_Up</col><col>4</col></row>
+						<row><col>CON_Dig</col><col>5</col></row>
+						<row><col>CON_Left</col><col>6</col></row>
+						<row><col>CON_Down</col><col>7</col></row>
+						<row><col>CON_Right</col><col>8</col></row>
+						<row><col>CON_Menu</col><col>9</col></row>
+						<row><col>CON_Special</col><col>10</col></row>
+						<row><col>CON_Special2</col><col>11</col></row>
+					</table>
+				</desc></param>
+				<param><type>bool</type><name>fShort</name><desc>Wenn true, wird die kurze Version der Taste zurückgegeben. (Beispiel: statt "&lt; &gt; |" wird "&lt;" zurückgegeben.)</desc></param>
+            </params>
+        </syntax>
+        <desc>Gibt den Namen der Taste iCon von iPlr zurück.</desc>
+		<examples>
+			<example>
+				<code><funclink>Log</funclink>(GetPlrControlName(0, CON_Dig));</code>
+				<text>Gibt den Namen der Taste [Graben] vom ersten Spieler im Log aus. Dies ist "D", wenn dieser das unveränderte Tastaturprofil 1 hat.</text>
+			</example>
+		</examples>
+    </func>
+    <author>Fulgen / Clonk Wiki</author><date>Juli 2016</date>
+</funcs>
+

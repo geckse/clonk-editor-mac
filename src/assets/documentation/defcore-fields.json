@@ -1,0 +1,436 @@
+{
+  "sections": {
+    "DefCore": {
+      "title": "DefCore",
+      "description": "In der Komponente DefCore.txt eines Objekts lässt sich das Basisverhalten eines Objekts einrichten. Dazu gehören zum Beispiel die Kategorie, also ob es sich um ein Gebäude oder ein Lebewesen handelt, die Grafik, Eingangs- und Einsammelbereiche, Brennbarkeit, Wert, Masse, und so weiter.",
+      "fields": {
+        "id": {
+          "type": "Definitions-ID",
+          "description": "ID des Objekts."
+        },
+        "Version": {
+          "type": "3 Integer",
+          "description": "Minimale vom Objekt benötigte Engine-Version. Dieser Eintrag sollte bei jeder Änderung auf die jeweils aktuelle Clonk-Version gesetzt werden, damit ersichtlich ist, zu welchem Zeitpunkt das Objekt erschienen ist."
+        },
+        "Name": {
+          "type": "Zeichenfolge (max. 30)",
+          "description": "Name des Objekts. Bei Mehrsprachigkeit Names.txt nutzen."
+        },
+        "Category": {
+          "type": "Integer",
+          "description": "Kategorie des Objekts. Siehe Objektkategorien."
+        },
+        "MaxUserSelect": {
+          "type": "Integer",
+          "description": "Maximale Anzahl beim Platzieren des Objekts im Menüsystem."
+        },
+        "RequireDef": {
+          "type": "Definitions-ID",
+          "description": "Die Definition wird nur geladen, wenn die angegebene Definition auch geladen wurde. So lassen sich Errors vermeiden, wenn sich beispielsweise im Script ein #include C4ID befindet, diese Definiton aber nicht vorhanden ist, weil sie sich in einem nicht geladenen Pack befindet."
+        },
+        "TimerCall": {
+          "type": "Zeichenfolge (max. 30)",
+          "description": "Regelmäßig aufgerufene Funktion des Objektscripts. Siehe Objektscripte."
+        },
+        "Timer": {
+          "type": "Integer",
+          "description": "Zeitabstand der TimerCalls in Frames. Ohne Angabe gilt der Vorgabewert 35."
+        },
+        "ContactCalls": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob Kontaktaufrufe im Objektscript getätigt werden."
+        },
+        "Width": {
+          "type": "Integer",
+          "description": "Breite des Objekts."
+        },
+        "Height": {
+          "type": "Integer",
+          "description": "Höhe des Objekts."
+        },
+        "Offset": {
+          "type": "2 Integer",
+          "description": "Koordinatenabstand der linken oberen Ecke zur Objektmitte."
+        },
+        "Value": {
+          "type": "Integer",
+          "description": "Wert des Objekts in Geldpunkten."
+        },
+        "Mass": {
+          "type": "Integer",
+          "description": "Gewicht des Objekts. Stein 10, Clonk 50, Hütte 1000, Burg 10000."
+        },
+        "Components": {
+          "type": "ID-Liste",
+          "description": "Elemente, aus denen das Objekt zusammen gesetzt ist. Im Bau oder Wachstum befindliche Objekte enthalten nur anteilige Komponenten."
+        },
+        "SolidMask": {
+          "type": "6 Integer",
+          "description": "Massivbereiche des Objekts. Zielrechteck aus Graphics.bmp aufs Objekt."
+        },
+        "TopFace": {
+          "type": "6 Integer",
+          "description": "Verdeckende Oberflächen. Zielrechteck aus Graphics.bmp aufs Objekt."
+        },
+        "Picture": {
+          "type": "4 Integer",
+          "description": "Repräsentativgrafik des Objekts. Rechteck aus Graphics.bmp."
+        },
+        "AllowPictureStack": {
+          "type": "Integer",
+          "description": "Erlaubt mehrere gleiche Objekte die je nach Grafik (oder Name) verschieden aussehen, im Menü und Inventar zu stapeln. Bitmaske aus 1 (Stapelung bei verschiedenen Farben), 2 (Grafiken), 4 (Namen), 8(Overlays)."
+        },
+        "Vertices": {
+          "type": "Integer",
+          "description": "Anzahl der Eckpunkte des Objekts. 1 bis 30."
+        },
+        "VertexX": {
+          "type": "bis zu 30 Integer",
+          "description": "Liste der horizontalen Koordinaten der Eckpunkte des Objekts. Siehe Vertices."
+        },
+        "VertexY": {
+          "type": "bis zu 30 Integer",
+          "description": "Liste der vertikalen Koordinaten der Eckpunkte des Objekts."
+        },
+        "VertexCNAT": {
+          "type": "bis zu 30 Integer",
+          "description": "Liste der Ausrichtungsbestimmungen der Eckpunkte. Siehe CNAT."
+        },
+        "VertexFriction": {
+          "type": "bis zu 30 Integer",
+          "description": "Liste der Reibungswerte der Eckpunkte, jeweils 1 bis 100."
+        },
+        "Entrance": {
+          "type": "4 Integer",
+          "description": "Koordinaten des Eingangsbereichs des Objekts relativ zur Objektmitte."
+        },
+        "Collection": {
+          "type": "4 Integer",
+          "description": "Koordinaten des Aufnahmebereichs des Objekts relativ zur Objektmitte."
+        },
+        "CollectionLimit": {
+          "type": "Integer",
+          "description": "Anzahl der maximal aufnehmbaren Objekte, 0 für uneingeschränkt."
+        },
+        "FireTop": {
+          "type": "Integer",
+          "description": "Flammenabstand zur Objektunterkante."
+        },
+        "Placement": {
+          "type": "Integer",
+          "description": "Platzierung: 0 Oberfläche, 1 in Flüssigkeit, 2 in der Luft."
+        },
+        "Exclusive": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob das Objekt dahinterliegende Objekte blockiert."
+        },
+        "ContactIncinerate": {
+          "type": "Integer",
+          "description": "Kontaktentzündlichkeit: 0 keine, 1 (hoch) bis 5 (niedrig)"
+        },
+        "BlastIncinerate": {
+          "type": "Integer",
+          "description": "Explosionsentzündlichkeit: 0 keine, sonst bei angegebenem Schadenswert"
+        },
+        "BurnTo": {
+          "type": "C4ID",
+          "description": "Definitionswechsel bei Entzündung."
+        },
+        "Base": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob das Objekt Heimatbasis sein kann."
+        },
+        "Line": {
+          "type": "Integer",
+          "description": "1 Energieleitung, 2 Zuflussrohr, 3 Abflussrohr."
+        },
+        "LineConnect": {
+          "type": "Integer",
+          "description": "Anschlussfähigkeit für Leitungen. Siehe LineConnect."
+        },
+        "Prey": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob das Objekt ein Beutelebewesen ist."
+        },
+        "Edible": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob das Objekt essbar ist (noch nicht unterstützt)."
+        },
+        "CrewMember": {
+          "type": "Integer",
+          "description": "0 oder 1. Wenn 1, wird das Objekt beim Kauf der Mannschaft hinzugefügt. Mit CreateObject erzeugte CrewMember-Objekte müssen mit MakeCrewMember der Mannschaft eines Spielers hinzugefügt werden."
+        },
+        "Growth": {
+          "type": "Integer",
+          "description": "Wachstum des Objekts. Baum 1-4, Lebewesen 15."
+        },
+        "Rebuy": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob das Objekt nach Verkauf zurückgekauft werden kann."
+        },
+        "Construction": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob das Objekt als Baustelle gebaut werden kann."
+        },
+        "ConstructTo": {
+          "type": "C4ID",
+          "description": "Definitionswechsel beim Bau."
+        },
+        "Grab": {
+          "type": "Integer",
+          "description": "0 kein Anfassen, 1 Anfassen und Verschieben, 2 nur Anfassen."
+        },
+        "GrabPutGet": {
+          "type": "Integer",
+          "description": "Bitmaske: Bit 0 (Wert 1) Grab und Put, Bit 1 (Wert 2) Grab und Get"
+        },
+        "Collectible": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob das Objekt eingesammelt werden kann."
+        },
+        "Rotate": {
+          "type": "Integer",
+          "description": "0 keine Rotation, 1 volle Rotation, 2-360 eingeschränkte Rotation"
+        },
+        "Chop": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob das Objekt gefällt werden kann."
+        },
+        "Float": {
+          "type": "Integer",
+          "description": "Auftrieb in Flüssigkeiten: 0 kein Auftrieb, sonst Auftriebshöhe über Mitte"
+        },
+        "ContainBlast": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob Explosionen im Inneren nach außen wirken."
+        },
+        "ColorByOwner": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei Wert 1 wird das Ausgangsblau, bzw. die Overlay.png, nach dem Besitzer gefärbt."
+        },
+        "ColorByMaterial": {
+          "type": "Zeichenfolge (max. 15)",
+          "description": "Name des Materials, nach dem das Objekt gefärbt wird."
+        },
+        "HorizontalFix": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei Wert 1 kann das Objekt sich nur vertikal bewegen."
+        },
+        "BorderBound": {
+          "type": "Integer",
+          "description": "Bitmaske: Bit 0 (1) Stop an Seiten, Bit 1 (2) Stop oben, Bit 2 (4) Stop unten, Bit 3 (8): Wenn das Objekt mit gesetztem 3. Bit ein Layerobjekt ist, werden Objekte innerhalb des Shapes des Layerobjektes gebunden. Hat das Layerobjekt die Kategorie C4D_StaticBack, werden nicht die beiden Shapes für den Kontakt benutzt, sondern der Mittelpunkt des untergeordneten Objekts und das Shape des Layerobjekts."
+        },
+        "UprightAttach": {
+          "type": "Integer",
+          "description": "Wenn ungleich 0 (8-10) sitzt das Objekt aufgerichtet auf Massivbereichen auf."
+        },
+        "StretchGrowth": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei Wert 1 wird das Objekt wie ein Lebewesen vergrößert (abhängig von der Fertigstellung. Siehe GetCon)"
+        },
+        "Basement": {
+          "type": "Integer",
+          "description": "0 kein Fundament, 1 Fundament, andere Werte speziell"
+        },
+        "NoBurnDecay": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei Wert 1 verbrennt das Objekt nicht."
+        },
+        "IncompleteActivity": {
+          "type": "Integer",
+          "description": "0 oder 1. Wert 1 für Lebewesen, die auch im Wachstum aktiv sein können."
+        },
+        "Oversize": {
+          "type": "Integer",
+          "description": "0 oder 1. Das Objekt kann mit DoCon auf Übergröße vergrößert werden."
+        },
+        "AttractLightning": {
+          "type": "Integer",
+          "description": "0 oder 1. Das Objekt zieht Blitze an."
+        },
+        "Fragile": {
+          "type": "Integer",
+          "description": "0 oder 1. Objekt sollte nicht geworfen werden."
+        },
+        "NoPushEnter": {
+          "type": "Integer",
+          "description": "0 oder 1. Das Objekt kann nicht durch Anfassen und Steuerung Rauf in andere Objekte hineingeschoben werden (z.B. Fahrstuhlkorb)."
+        },
+        "VehicleControl": {
+          "type": "Integer",
+          "description": "Bitmaske: Bit 0 (Wert 1) das Objekt kann durch Anfassen von außen und/oder Bit 1 (Wert 2) von innen gesteuert werden. Bei aktiviertem VehicleControl werden die selbständig auszuführenden Befehle (Commands) eines Clonks als ControlCommand-Aufrufe an das Script des entsprechenden Fahrzeugs weitergeleitet und können von diesem ausgewertet und abgefangen werden. Siehe Control-Funktionen."
+        },
+        "Pathfinder": {
+          "type": "Integer",
+          "description": "1 - 10. Beeinflusst die Suchtiefe des Wegfindungsalgorithmus (Standard: 1). Vorsicht: hohe Werte sind sehr rechenintensiv. Mit diesem Wert setzen auch Objekte ohne CrewMember-Wert bei der Ausführung von Kommandos (z.B. MoveTo) den internen Wegfindungsalgorithmus ein. Erweitert ab 4.95.4."
+        },
+        "NoComponentMass": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 zählt der Inhalt des Objekts nicht mit zur Gesamtmasse. Dadurch lässt sich zum Beispiel verhindern, dass Rucksäcke oder Köcher durch ihren Inhalt mörderische Wurfwaffen werden."
+        },
+        "NoStabilize": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 richtet sich das Objekt nicht automatisch auf 0° Drehung auf, wenn es nur sehr leicht gedreht ist."
+        },
+        "ClosedContainer": {
+          "type": "Integer",
+          "description": "0 oder 1. Wenn gesetzt, werden enthaltene Objekte nicht von Lava oder Säure beschädigt werden. Bei 1 können enthaltene Clonks bei aktiviertem Fog Of War nicht herausschauen. Bei 2 können sie es."
+        },
+        "SilentCommands": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 werden bei fehlgeschlagenen Commands keine Meldungen ausgegeben."
+        },
+        "NoBurnDamage": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 wird dem Objekt kein Schaden zugefügt, wenn es brennt."
+        },
+        "TemporaryCrew": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 wird das Objekt nicht in die Dauerhafte Crew des Spielers eingetragen."
+        },
+        "SmokeRate": {
+          "type": "Integer",
+          "description": "0 bis 200: Gibt die Rauchmenge an, die das Objekt im Brandfall verursacht. 0 ist kein Rauch, 100 ist die Standardmenge. Bei Werten ungleich 0 wird allerdings immer die Maximalmenge Rauch produziert, wenn das Objekt in schneller Bewegung ist (zum Beispiel Brandpfeile)."
+        },
+        "BlitMode": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 wird das Objekt additiv gezeichnet."
+        },
+        "NoBreath": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 atmet das Objekt nicht, selbst wenn es ein Lebewesen ist."
+        },
+        "ConSizeOff": {
+          "type": "Integer",
+          "description": "Wert >=0. Abzug des benötigten Bauplatzes von oben."
+        },
+        "NoSell": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 kann das Objekt nicht verkauft werden."
+        },
+        "NoGet": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 kann das Objekt nicht manuell aus anderen Objekten heraus genommen werden.01."
+        },
+        "NoFight": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 kämpft das Objekt nicht mit anderen Lebewesen, selbst wenn es selber ein Lebewesen ist."
+        },
+        "LiftTop": {
+          "type": "Integer",
+          "description": "Wird ein Objekt bei einer Action mit der Procedure \"LIFT\" mehr als die angegebene Höhe über der Objektmitte angehoben, wird die Funktion LiftTop im Script aufgerufen."
+        },
+        "RotatedEntrance": {
+          "type": "Integer",
+          "description": "0 Eingang ist nur bei aufgerichtetem Objekt geöffnet, 1 Eingang ist immer geöffnet, 2-360 Eingang ist innerhalb des entsprechenden Bereichs geöffnet. Ab 4.95.4."
+        },
+        "MoveToRange": {
+          "type": "Integer",
+          "description": "Maximale Distanz, mit der ein Bewegungskommando einen Zielpunkt treffen muss, damit das Bewegungskommando als erfüllt gilt. Vorgabewert 5. Ab 4.95.4."
+        },
+        "NoTransferZones": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 berücksichtigt die Wegfindung des Objekts keine Transferzonen an Gebäuden. Ab 4.95.4."
+        },
+        "AutoContextMenu": {
+          "type": "Integer",
+          "description": "0 oder 1. Bei 1 wird für dieses Gebäude beim Betreten automatisch das Kontextmenü geöffnet. Ab 4.9.7.7."
+        },
+        "HideHUDBars": {
+          "type": "Bitmaske",
+          "description": "Blendet die angegebenen Statusleisten des Objekts aus wenn es als Cursor angewählt ist. Mögliche kombinierbare Werte: Energy, MagicEnergy, Breath, All; Ab LC [336]."
+        },
+        "HideHUDElements": {
+          "type": "Bitmaske",
+          "description": "Blendet die angegebenen HUD-Elemente des Objekts aus wenn es als Cursor angewählt ist. Mögliche kombinierbare Werte: Portrait, Captain (der Kapitänsstern), Name, Rank, RankImage, All; Ab LC [346]."
+        },
+        "BaseAutoSell": {
+          "type": "Boolean",
+          "description": "Falls true werden Objekte dieser Definition automatisch verkauft sobald sie eine Basis betreten (auch indirekt über das Inventar anderer Objekte), wie bei Goldklumpen üblich. Standardwert ist false (true falls die id GOLD ist). Ab LC [346]."
+        }
+      }
+    },
+    "Physical": {
+      "title": "Physical",
+      "description": "Physische Eigenschaften des Objekts wie Energie, Bewegungsgeschwindigkeit und Fähigkeiten.",
+      "fields": {
+        "Energy": {
+          "type": "Integer",
+          "description": "0-100000. Maximale Energie bzw. Lebensenergie."
+        },
+        "Breath": {
+          "type": "Integer",
+          "description": "0-100000. Maximaler Atem."
+        },
+        "Walk": {
+          "type": "Integer",
+          "description": "0-100000. Laufgeschwindigkeit."
+        },
+        "Jump": {
+          "type": "Integer",
+          "description": "0-100000. Sprungkraft."
+        },
+        "Scale": {
+          "type": "Integer",
+          "description": "0-100000. Klettergeschwindigkeit."
+        },
+        "Hangle": {
+          "type": "Integer",
+          "description": "0-100000. Hangelgeschwindigkeit."
+        },
+        "Dig": {
+          "type": "Integer",
+          "description": "0-100000. Grabgeschwindigkeit."
+        },
+        "Swim": {
+          "type": "Integer",
+          "description": "0-100000. Schwimmgeschwindigkeit."
+        },
+        "Throw": {
+          "type": "Integer",
+          "description": "0-100000. Wurfkraft."
+        },
+        "Push": {
+          "type": "Integer",
+          "description": "0-100000. Schiebekraft."
+        },
+        "Fight": {
+          "type": "Integer",
+          "description": "0-100000. Kampfkraft."
+        },
+        "Magic": {
+          "type": "Integer",
+          "description": "0-100000. Maximale Zauberenergie."
+        },
+        "Float": {
+          "type": "Integer",
+          "description": "0-100. Fluggeschwindigkeit."
+        },
+        "CanScale": {
+          "type": "Integer",
+          "description": "0 oder 1. Klettern."
+        },
+        "CanHangle": {
+          "type": "Integer",
+          "description": "0 oder 1. Hangeln."
+        },
+        "CanDig": {
+          "type": "Integer",
+          "description": "0 oder 1. Graben."
+        },
+        "CanConstruct": {
+          "type": "Integer",
+          "description": "0 oder 1. Bauen. Bei Werten größer 1: Prozentuale Baugeschwindigkeit (100 entspricht dem Standard; 50 ist halbe Standardgeschwindigkeit). Erweitert"
+        },
+        "CorrosionResist": {
+          "type": "Integer",
+          "description": "0 oder 1. Legt fest, ob das Objekt Säure widersteht."
+        },
+        "BreatheWater": {
+          "type": "Integer",
+          "description": "0 Objekt atmet Luft, 1 Objekt atmet Wasser."
+        }
+      }
+    }
+  }
+}

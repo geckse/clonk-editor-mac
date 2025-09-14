@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+	<func>
+		<title>SetObjectLayer</title>
+		<category>Objekte</category><subcat>Status</subcat>
+		<version>N/A</version>
+		<syntax>
+			<rtype>bool</rtype>
+			<params>
+				<param><type>object</type><name>pnewlayer</name><desc>Layerobjekt für pObj.</desc></param>
+				<param><type>object</type><name>pObj</name><desc>Objekt, dessen Layerobjekt geändert werden soll.</desc></param>
+			</params>
+		</syntax>
+		<desc>Ändert das Layerobjekt von pobj auf pnewlayer und alle Inhalte auch. Standardmäßig sind alle Objekte im globalen Layer 0.
+		Wenn pnewlayer 0 ist, wird der Layer in den globalen Layer gesetzt. Objekte können nur miteinander interagieren, wenn sie im selben Layer sind.
+		Wird das Layerobjekt gelöscht, werden alle Objekte, die diesen Layer hatten, dem globalen Layer zugeordnet.</desc>
+
+		 <related>
+			<funclink>GetObjectLayer</funclink>
+			<funclink>Find_Layer</funclink>
+			<funclink>VIS_LayerToggle</funclink>
+		 </related>
+	</func>
+	<author>Fulgen, Clonk Wiki</author><date>Juli 2016</date>
+</funcs>

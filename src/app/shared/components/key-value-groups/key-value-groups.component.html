@@ -1,0 +1,81 @@
+<div class="key-value-groups">
+  <!-- Groups iteration -->
+  <div 
+    *ngFor="let group of groups; let groupIndex = index; trackBy: trackByGroup" 
+    class="group-container"
+    [class.single-group]="!hasMultipleGroups">
+    
+    <!-- Group header (only show for multiple groups or named sections) -->
+    <div class="group-header" *ngIf="hasMultipleGroups">
+      <div class="group-title-section">
+        <input 
+          [(ngModel)]="group.name"
+          (input)="onGroupNameChange(groupIndex, group.name)"
+          class="group-title-input"
+          placeholder="Section name..."
+        />
+        <span class="group-info">
+          <span class="field-count">{{ group.fields.length }} fields</span>
+          <span class="section-type" *ngIf="group.section">{{ group.section }}</span>
+        </span>
+      </div>
+      
+      <div class="group-actions">
+        <button 
+          class="remove-group-button"
+          (click)="removeGroup(groupIndex)"
+          title="Remove section"
+          *ngIf="groups.length > 1">
+          Remove Section
+        </button>
+      </div>
+    </div>
+    
+    <!-- Simple editor for this group -->
+    <app-key-value-simple-editor
+      [fields]="group.fields"
+      [config]="getEditorConfig(group)"
+      (fieldsChange)="onGroupFieldsChange(groupIndex, $event)"
+      (fieldChange)="onGroupFieldChange(groupIndex, $event)">
+    </app-key-value-simple-editor>
+  </div>
+  
+  <!-- Add new group button -->
+  <div class="add-group-section" *ngIf="showAddRemoveButtons">
+    <button class="add-group-button" (click)="addNewGroup()">
+      + Add New Section
+    </button>
+  </div>
+  
+  <!-- Settings panel -->
+  <div class="settings-panel">
+    <div class="setting-item">
+      <label for="separator-select">Separator:</label>
+      <select 
+        id="separator-select"
+        [(ngModel)]="separator" 
+        (change)="updateContent()"
+        class="separator-select">
+        <option value="=">=</option>
+        <option value=":">:</option>
+        <option value="|">|</option>
+        <option value=" ">space</option>
+      </select>
+    </div>
+    
+    <div class="setting-item">
+      <label for="doc-type-select">Type:</label>
+      <select 
+        id="doc-type-select"
+        [(ngModel)]="documentationType"
+        (change)="updateContent()"
+        class="doc-type-select">
+        <option value="defcore">DefCore</option>
+        <option value="actmap">ActMap</option>
+        <option value="script">Script</option>
+        <option value="material">Material</option>
+        <option value="custom">Custom</option>
+      </select>
+    </div>
+  </div>
+</div>

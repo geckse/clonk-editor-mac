@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+	<func>
+		<title>SetActionKeepPhase</title>
+		<category>Objekte</category><subcat>Aktivität</subcat>
+		<version>4.9.10.14 LC [353]</version>
+		<syntax>
+			<rtype>bool</rtype>
+			<params>
+				<param><type>string</type><name>szAction</name><desc>Neue Aktivität. "ActIdle" oder "Idle" löscht die Aktivität.</desc></param>
+				<param><type>object</type><name>pTarget1</name><desc>Erstes Zielobjekt für die Aktivität</desc><optional /></param>
+				<param><type>object</type><name>pTarget2</name><desc>Zweites Zielobjekt für die Aktivität</desc><optional /></param>
+				<param><type>bool</type><name>fDirect</name><desc>Wenn true, werden Start-/AbortCalls umgangen, und die Aktivität wird trotz NoOtherAction gesetzt.</desc><optional /></param>
+			</params>
+		</syntax>
+		<desc>Setzt die Aktivität des aufrufenden Objekts, gleich wie <funclink>SetAction</funclink>, behält aber die aktuelle Aktivitätsphase bei. Dies erlaubt das nahtlose Wechseln zwischen unterschiedlichen Animationen für die gleiche Aktivität, zum Beispiel wenn es eigene Animationen mit getragener Waffe gibt.</desc>
+		<remark>Diese Funktion ist ein Wrapper um <funclink>GetPhase</funclink>, <funclink>SetAction</funclink> und <funclink>SetPhase</funclink>.</remark>
+		<remark>Diese Funktionalität wird in unterschiedlichen Clonks in einer Funktion namens CheckArmed verwendet.</remark>
+		<remark>Der Rückgabewert ist nur dann true, wenn die Aktion und die Phase erfolgreich gesetzt werden konnten, sonst false.</remark>
+		<related>
+			<funclink>GetPhase</funclink>
+			<funclink>SetAction</funclink>
+			<funclink>SetPhase</funclink>
+		</related>
+	</func>
+	<author>Der Tod</author><date>April 2022</date>
+</funcs>

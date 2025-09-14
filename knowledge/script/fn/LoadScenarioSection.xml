@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+  <func>
+    <title>LoadScenarioSection</title>
+    <category>Global</category>
+    <version>4.9.6.0 CR</version>
+    <syntax>
+      <rtype>bool</rtype>
+      <params>
+        <param><type>string</type><name>szSection</name><desc>Name der Sektion ohne Sect. Beispiel: Der Name der Sektion SectTunnel.c4g wäre "Tunnel". Der Name der Hauptsektion ist "main".</desc></param>
+		<param><type>int</type><name>dwFlags</name><desc>Flags, die für verschiedene Einstellungen zum Speichern gesetzt werden müssen, damit bestimmte Teile der Sektion bei der Rückkehr erhalten bleiben. Folgende Werte sind möglich: 
+		<table>
+			<rowh><col>Name</col><col>Wert</col><col>Beschreibung</col></rowh>
+			<row><col>C4SECT_SaveLandscape</col><col>1</col><col>Veränderungen in der Landschaft werden gespeichert.</col></row>
+			<row><col>C4SECT_SaveObjects</col><col>2</col><col>Objekte werden gespeichert.</col></row>
+			<row><col>C4SECT_KeepEffects</col><col>4</col><col>Globale Effekte werden gespeichert.</col></row>
+		</table>
+		</desc></param>
+      </params>
+    </syntax>
+    <desc>Ladet eine im Szenario vorhandene Sektion. Für weitere Informationen siehe <emlink href="https://board.ccan.de/cgi-bin/topic_show.pl?pid=124760">Sven2s Erklärung</emlink>, 
+	<emlink href="http://cndg.forumieren.de/t308-sections-ein-schritt-fur-schritt-tutorial">ein Tutorial im CNDG-Forum</emlink> sowie 
+	<emlink href="http://cndg.forumieren.de/tutorials-f5/sections-tutorial-2-t334.htm">ein weiteres Tutorial im CNDG-Forum</emlink>.</desc>
+	<remark>Objekte sollten vor dem Wechsel mit <funclink>SetObjectStatus</funclink> deaktiviert und nach dem Wechsel wieder reaktiviert werden.<br />
+	Wichtig zu beachten ist, dass die Objekte nach dem Laden der neuen Sektion immer noch die Koordinaten haben, die sie in der alten Sektion hatten. Deshalb kann es vorkommen, dass Objekte nach dem Laden gelöscht werden, weil sie nun außerhalb der Landschaft liegen. Man musst also möglicherweise die Position der Objekte vor dem Sektionswechsel neu setzen, um dies zu verhindern.</remark>
+    <related>
+      <funclink>SetObjectStatus</funclink>
+    </related>
+  </func>
+  <author>Fulgen / Clonk Wiki</author><date>Juli 2016</date>
+</funcs>

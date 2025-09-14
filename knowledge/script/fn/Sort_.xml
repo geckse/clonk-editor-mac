@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<doc>
+<title>Sort_*</title>
+<h>Sort_*</h>
+<text>Die Sort_* - Funktionen dienen dem Sortieren von Suchergebnissen von <funclink>FindObjects</funclink>.</text>
+<text><table>
+	<rowh><col>Name</col><col>Beschreibung</col></rowh>
+	<row><col>Sort_Reverse(array sort)</col><col>Sortiert entsprechend den in sort angegebenen Sortierspezifikationen aber in umgekehrter Reihenfolge.</col></row>
+	<row><col>Sort_Multiple(array sort, ...)</col><col>Sortiert nacheinander nach allen angegebenen Sortierspezifikationen, bis die erste keine Gleichheit ergibt.</col></row>
+	<row><col>Sort_Distance(int x, int y)</col><col>Sortiert nach Entfernung zum (objektlokalen) Punkt x/y.</col></row>
+	<row><col>Sort_Random()</col><col>Sortiert zufällig.</col></row>
+	<row><col>Sort_Speed()</col><col>Sortiert nach Geschwindigkeit.</col></row>
+	<row><col>Sort_Mass()</col><col>Sortiert nach Masse.</col></row>
+	<row><col>Sort_Value()</col><col>Sortiert nach Objektwert.</col></row>
+	<row><col>Sort_Func(string f, ...)</col><col>Sortiert nach dem Rückgabewert einer Funktion.</col></row>
+</table></text>
+</doc>

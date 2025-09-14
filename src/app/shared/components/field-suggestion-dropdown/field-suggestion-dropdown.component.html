@@ -1,0 +1,34 @@
+<div class="field-suggestion-dropdown">
+  <input 
+    #inputElement
+    type="text"
+    [placeholder]="placeholder"
+    (input)="onInput($event)"
+    (focus)="onFocus()"
+    (keydown)="onKeyDown($event)"
+    autocomplete="off"
+    class="suggestion-input"
+  />
+  
+  <div 
+    class="dropdown-list" 
+    [class.open]="isDropdownOpen && showSuggestions"
+    *ngIf="isDropdownOpen && showSuggestions"
+  >
+    <div 
+      class="dropdown-item"
+      [class.highlighted]="isHighlighted(i)"
+      *ngFor="let suggestion of filteredSuggestions$ | async; let i = index"
+      (click)="selectSuggestion(suggestion)"
+    >
+      {{ suggestion }}
+    </div>
+    
+    <div 
+      class="no-suggestions"
+      *ngIf="(filteredSuggestions$ | async)?.length === 0"
+    >
+      No matching fields found
+    </div>
+  </div>
+</div>

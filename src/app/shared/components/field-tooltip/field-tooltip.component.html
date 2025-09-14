@@ -1,0 +1,12 @@
+<div class="tooltip-content" *ngIf="hasDocumentation">
+  <div class="tooltip-arrow"></div>
+  
+  <div class="tooltip-header">
+    <strong class="field-name">{{ fieldName }}</strong>
+    <span class="field-type" *ngIf="typeDisplay">{{ typeDisplay }}</span>
+  </div>
+  
+  <div class="tooltip-description">
+    {{ description }}
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="smart-field-input-container">
+  <input
+    #inputElement
+    type="text"
+    [placeholder]="placeholder"
+    [class]="cssClass"
+    (input)="onInput($event)"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    autocomplete="off"
+    spellcheck="false"
+  />
+  
+  <!-- Dropdown suggestions -->
+  <div class="suggestions-dropdown" *ngIf="isDropdownOpen && filteredSuggestions.length > 0">
+    <div 
+      class="suggestion-item"
+      *ngFor="let suggestion of filteredSuggestions; let i = index"
+      [class.highlighted]="i === highlightedIndex"
+      (click)="onSuggestionClick(suggestion)"
+      (mouseenter)="onSuggestionMouseEnter(i)">
+      {{ suggestion }}
+    </div>
+  </div>
+</div>

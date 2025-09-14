@@ -1,0 +1,68 @@
+<div class="key-value-editor">
+  <!-- Section header -->
+  <div class="section-header" *ngIf="currentSection">
+    <h4>{{ currentSection }}</h4>
+    <span class="documentation-type">{{ currentDocumentationType }}</span>
+  </div>
+  
+  <!-- Field list -->
+  <ul dragula="KEY-VALUE-EDITOR" [(dragulaModel)]="_parsed" (moves)="movement($event)" class="field-list">
+    <li *ngFor="let field of _parsed; let i = index;" 
+        class="field-row"
+        [class.valid]="isFieldValid(field)"
+        [class.invalid]="!isFieldValid(field) && field.key.length > 0">
+        
+        <div class="drag-handle">&#8942;</div>
+        
+        <!-- Key field with suggestion dropdown -->
+        <div class="cell key-cell"
+             (mouseenter)="onFieldMouseEnter(field)"
+             (mouseleave)="onFieldMouseLeave()">
+          <app-field-suggestion-dropdown
+            [documentationType]="currentDocumentationType"
+            [section]="currentSection"
+            [initialValue]="field.key"
+            [placeholder]="'Field name...'"
+            (valueChange)="onFieldKeyChange(field, $event)"
+            (fieldSelected)="onFieldSelected(field, $event)">
+          </app-field-suggestion-dropdown>
+          
+          <!-- Tooltip -->
+          <app-field-tooltip
+            [fieldDocumentation]="field.fieldInfo || null"
+            [fieldName]="field.key"
+            [visible]="tooltipVisible && hoveredField === field"
+            position="top">
+          </app-field-tooltip>
+        </div>
+        
+        <!-- Value field -->
+        <div class="cell value-cell">
+          <input 
+            [value]="field.value"
+            (input)="onFieldValueChange(field, $any($event.target).value)"
+            type="text"
+            placeholder="Value..."
+            class="value-input"
+          />
+        </div>
+        
+        <!-- Remove button -->
+        <div class="cell action-cell">
+          <button 
+            class="remove-button"
+            (click)="removeField(i)"
+            title="Remove field">
+            ×
+          </button>
+        </div>
+    </li>
+  </ul>
+  
+  <!-- Add new field button -->
+  <div class="add-field-section">
+    <button class="add-field-button" (click)="addNewField()">
+      + Add Field
+    </button>
+  </div>
+</div>

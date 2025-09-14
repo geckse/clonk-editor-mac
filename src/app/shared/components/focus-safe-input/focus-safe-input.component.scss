@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+  }
+  
+  &::placeholder {
+    color: #6c757d;
+  }
+}
+
+// Dark theme support
+:host-context(.dark-theme) {
+  input {
+    background: #495057;
+    border-color: #6c757d;
+    color: #f8f9fa;
+    
+    &:focus {
+      border-color: #007bff;
+    }
+    
+    &::placeholder {
+      color: #adb5bd;
+    }
+  }
+}

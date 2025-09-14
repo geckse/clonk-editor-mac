@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+	<func>
+		<title>Contents</title>
+		<category>Objekte</category><subcat>Inhalt</subcat>
+		<version>4.6.5.0 CP<extversion>4.9.10.14 LC [353]</extversion></version>
+		<syntax>
+			<rtype>object</rtype>
+			<params>
+				<param><type>int</type><name>iIndex</name><desc>Index des Objekts in pObj, Zählung beginnt mit 0</desc></param>
+				<param><type>object</type><name>pObj</name><desc>Objekt, in welchem gesucht werden soll; null für lokale Aufrufe</desc></param>
+				<param><type>bool</type><name>returnAttached</name><desc>Falls true werden auch Objekte mit <emlink href="definition/procedures.html">Prozedur</emlink> ATTACH zurück gegeben. Seit 4.9.10.14 LC [353]</desc></param>
+			</params>
+		</syntax>
+		<desc>Liefert das indizierte Objekt, das in pObj enthalten ist.</desc>
+		<remark>Achtung: Ohne Angabe von true für returnAttached werden Objekte mit <emlink href="definition/procedures.html">Prozedur</emlink> ATTACH übersprungen. Dadurch stimmt das Ergebnis von <funclink>ContentsCount</funclink> (ohne Angabe von ID) nicht mit der Anzahl der über Contents() abfragbaren Objekte überein.</remark>
+		<related>
+			<funclink>Contained</funclink>
+			<funclink>ContentsCount</funclink>
+			<funclink>FindContents</funclink>
+		</related>
+	</func>
+	<author>springer</author><date>April 2002</date>
+	<author>Der Tod</author><date>April 2022</date>
+</funcs>

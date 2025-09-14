@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+  <func>
+    <title>SetNextMission</title>
+    <category>Global</category>
+    <version>4.9.7.0 CR</version>
+    <syntax>
+      <rtype>void</rtype>
+      <params>
+        <param><type>string</type><name>szNextMissionFile</name><desc>Name der Datei, welche gestartet werden soll.</desc></param>
+        <param><type>string</type><name>szButtonText</name><desc>Text des Buttons</desc></param>
+        <param><type>string</type><name>szTooltip</name><desc>Tooltip, welcher beim Überfahren des Buttons mit der Maus angezeigt werden soll.</desc></param>
+      </params>
+    </syntax>
+    <desc>Verändert den "Diese Runde weiterspielen"-Button beim Endbildschirm so, dass das angegebene Szenario beim Draufklicken gestartet wird. Wird szNextMissionFile auf das Szenario selbst gesetzt, kann so ein Neustart-Button erreicht werden.</desc>
+  </func>
+  <author>Fulgen / Clonk Wiki</author><date>Juli 2016</date>
+</funcs>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+				<func>
+								<title>GetVertex</title>
+								<category>Objekte</category><subcat>Vertices</subcat>
+								<version>4.6.5.0 CP</version>
+								<syntax>
+												<rtype>int</rtype>
+												<params>
+																<param><type>int</type><name>iIndex</name><desc>Index des Vertex.</desc></param>
+				<param><type>int</type><name>iValueToGet</name><desc>Gibt an, welcher Wert zurückgegeben werden soll. Es sind folgende Werte möglich:
+						<table>
+							<rowh><col>Name</col><col>Wert</col><col>Beschreibung</col></rowh>
+							<row><col>VTX_X</col><col>0</col><col>X-Koordinate des Vertex'</col></row>
+							<row><col>VTX_Y</col><col>1</col><col>Y-Koordinate des Vertex'</col></row>
+							<row><col>VTX_CNAT</col><col>2</col><col>Ausrichtung des Vertex'</col></row>
+							<row><col>VTX_Friction</col><col>3</col><col>Reibung des Vertex'</col></row>
+						</table></desc></param>
+				<param><type>object</type><name>pObj</name><desc>Objekt, dessen Vertices ausgelesen werden. 0 bei lokalem Aufruf.</desc><optional/></param>
+												</params>
+								</syntax>
+								<desc>Liefert eine Koordinate des indizierten Vertex (siehe <emlink href="definition/defcore.html">DefCore.txt</emlink>) eines Objekts. Koordinaten in Relation zur Objektmitte.</desc>
+								<related>
+			<funclink>SetVertex</funclink>
+						<funclink>GetVertexNum</funclink>
+								</related>
+				</func>
+				<author>jwk</author><date>August 2002</date>
+</funcs>
+

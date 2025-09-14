@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+	<func>
+		<title>TestMessageBoard</title>
+		<category>Interface</category>
+		<version>4.9.6.0 CR</version>
+		<syntax>
+			<rtype>bool</rtype>
+			<params>
+				<param><type>int</type><name>iPlr</name><desc>Spieler, für den getestet werden soll.</desc></param>
+				<param><type>bool</type><name>fTestIfInUse</name><desc>Gibt an, ob auch wirklich getestet werden soll.</desc></param>
+			</params>
+		</syntax>
+		<desc>Testet ob eine Eingabezeile (aufgerufen mit <funclink>CallMessageBoard</funclink>) existiert. Es gibt auch true zurück, wenn CallMessageBoard aufgerufen wurde, aber es noch nicht angezeigt wird.</desc> 
+		 <related>
+			<funclink>InputCallback</funclink>
+			<funclink>AbortMessageBoard</funclink>
+			<funclink>CallMessageBoard</funclink>
+		 </related>
+	</func>
+	<author>Fulgen, Clonk Wiki</author><date>Juli 2016</date>
+</funcs>

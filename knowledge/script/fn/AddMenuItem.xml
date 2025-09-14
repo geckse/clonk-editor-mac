@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+	<func>
+		<title>AddMenuItem</title>
+		<category>Objekte</category><subcat>Menü</subcat>
+		<version>4.6.5.0 CP<extversion>4.9.5.0 CE</extversion></version>
+		<syntax>
+			<rtype>int</rtype>
+			<params>
+				<param><type>string</type><name>szCaption</name><desc>Text des neuen Menüeintrags</desc></param>
+				<param><type>string</type><name>szCommand</name><desc>Kommando, das bei Auswahl des Menüeintrags ausgeführt werden soll. Kann entweder ein Funktionsname oder ein Statement sein. Wenn ein Funktionsname angegeben wird, dann wird die Funktion in dem Objekt aufgerufen, welches bei <funclink>CreateMenu</funclink> als pCommandObject übergeben wurde.</desc></param>
+				<param><type>id</type><name>idItem</name><desc>Die ID wird als Bild für den Menüeintrag verwendet. Der Name der Definition kann mit %s in szCaption verwendet werden. Außerdem wird die ID als erster Parameter an den Aufruf von szCommand übergeben, sofern dieser nur ein Funktionsname ist.</desc></param>
+				<param><type>object</type><name>pMenuObject</name><desc>Objekt, dessen Menü der Eintrag hinzugefügt werden soll. Kann bei lokalen Aufrufen 0 sein.</desc></param>
+				<param><type>int</type><name>iCount</name><desc>Gewünschte Zahl, die neben dem Menüeintrag angezeigt werden soll (ähnlich der Mengenanzeige im Aktivieren-Menü)</desc></param>
+				<param><type>int</type><name>iParameter</name><desc>Wird als 2. Parameter an die in szCommand angegebene Funktion übergeben (siehe Anmerkung)</desc></param>
+				<param><type>string</type><name>szInfoCaption</name><desc>Beschreibungstext des neuen Menüeintrags</desc></param>
+				<param><type>int</type><name>iExtra</name><desc>Zusatzparameter für das Verhalten des Menüeintrags.<br />
+					Untere 7 Bits (0-127): Menüsymbol. Sie lassen sich nicht gleichzeitig verwenden.<br />
+					0: Normal<br />
+					C4MN_Add_ImgRank = 1: Rangsymbol. Bei angegebenem idItem wird ggf. die Rank.png der Definition genutzt. iCount gibt die Ranghöhe an<br />
+					C4MN_Add_ImgIndexed = 2: Picturefacet, das um XPar1-fache Picturebreite nach rechts verschoben ist, wird verwendet. Damit lassen sich mehrere Menüsymbole innerhalb einer Definition unterbringen.<br />
+					C4MN_Add_ImgObjRank = 3: XPar1 gibt ein Objekt an, dessen Picture-Grafik mit Rang gezeichnet wird. Hat das Objekt keine Infosektion (und damit keinen Rang), so wird in Kontextmenüs dennoch ein entsprechender Leerraum gelassen. Ab CE.<br />
+					C4MN_Add_ImgObject = 4: XPar1 gibt ein Objekt an, dessen Picture-Grafik gezeichnet wird. Ab CE.<br />
+					C4MN_Add_ImgTextSpec = 5: Das Symbol wird in szCaption festgelegt und kann entweder eine normale ID, eine Portrait-Spezifikation in der Form "Portrait:CLNK::00ff00::1" oder eines der folgenden Symbole sein:<br />
+					<table>
+						<rowh><col>Name</col><col>Beschreibung</col></rowh>
+						<row><col>Ico:Locked</col><col>Passwortsymbol</col></row>
+						<row><col>Ico:League</col><col>Ligasymbol</col></row>
+						<row><col>Ico:GameRunning</col><col>Symbol für "Spiel läuft"</col></row>
+						<row><col>Ico:Lobby</col><col>Symbol für "Lobby"</col></row>
+						<row><col>Ico:RuntimeJoin</col><col>Symbol für "Laufzeitbeitritt erlaubt"</col></row>
+						<row><col>Ico:FairCrew</col><col>Symbol für "Faire Crew"</col></row>
+						<row><col>Ico:Settlement</col><col>Symbol für Siedlungspunkte</col></row>
+					</table><br />
+					C4MN_Add_ImgColor = 6: Die Besitzerfarbflächen im Symbol werden mit der in XPar1 angegebenen Farbe eingefärbt. <br />
+					C4MN_Add_ImgIndexedColor = 7: Picturefacet, das um XPar1-fache Picturebreite nach rechts verschoben ist, wird verwendet. Die Besitzerfarbflächen im Symbol werden mit der in XPar2 angegebenen Farbe eingefärbt. Kann nicht mit C4MN_Add_PassValue kombiniert werden.<br /><br />
+					Zusätzliche Flags (können mit obrigen Bits kombiniert werden):<br />
+					C4MN_Add_PassValue = 128: XPar2 wird als Wertangabe benutzt, und überschreibt die Standardangabe (Wert der Definition idItem). Siehe auch iExtra von <funclink>CreateMenu</funclink>.<br />
+					C4MN_Add_ForceCount = 256: Wenn dieses Flag angegeben wird, wird auch ein iCount von 0 im Menü als Anzahl angezeigt (wie es zB. auch im Kaufmenü der Fall ist).<br />
+					Bei dieser Gelegenheit sei auch erwähnt, dass intern der Wert C4MN_Item_NoCount = 12345678 verwendet wird, wenn dieses Flag nicht angegeben ist, aber iCount 0 ist. D.h. auch, dass in dem seltenen Fall, dass iCount mit 12345678 angegeben wird, keine Anzahl angezeigt wird. <br />
+					C4MN_Add_ForceNoDesc = 512: Wenn dieses Flag angegeben wird, wird auf keinen Fall eine Beschreibung für den Menüeintrag angezeigt. Beschreibung (setzbar mit szInfoCaption) in dem Sinn, dass ein Tooltip angezeigt wird, wenn der Menüeintrag lange genug ausgewählt ist.</desc><optional/></param>
+				<param><type>any</type><name>XPar1</name><desc>Erster Zusatzparameter für iExtra.</desc><optional /></param>
+				<param><type>any</type><name>XPar2</name><desc>Zweiter Zusatzparameter für iExtra.</desc><optional /></param>
+			</params>
+		</syntax>
+		<desc>Fügt einen Menüeintrag hinzu.</desc>
+		<remark>Menüsymbole sollten optimalerweise die Größe 35x35 für normale Menüs, 16x16 für Kontextmenüs besitzen. Andernfalls wird unter Beibehaltung des Höhe/Breite-Verhältnisses so gestreckt, dass die längere Seite dieser Größe entspricht.</remark>
+		<remark>Wird als szCommand-Parameter nur ein Funktionsname angegeben, werden folgende Parameter übergeben:
+			<code>idItem, iParameter, bRight[, iValue]</code>
+						wobei bRight angibt, ob der Menueintrag mit [Special2] bzw. der rechten Maustaste ausgewählt wurde.
+						iValue wird nur übergeben, wenn das Bit 8 bei iExtra gesetzt wird und gibt den (überschriebenen) angezeigten Wert des ausgewählten Menüeintrags an.
+		</remark>
+		<examples>
+			<example>
+				<code>/* Wird bei Doppelklick auf Graben aufgerufen */
+func Activate()
+{
+	// Lokales Menü mit lokalen Kommandos erzeugen
+	CreateMenu(GetID());
+	// Menüeinträge erzeugen
+	AddMenuItem("Hallo sagen", "SayHello", 0);
+	AddMenuItem("Zaubern", "DoMagic", 0);
+	AddMenuItem("Objekt erzeugen: %s", "CreateItem", ROCK);
+	AddMenuItem("Objekt erzeugen: %s", "CreateItem", FLNT);
+}
+
+/* Diese Kommados werden vom Menü aufgerufen */
+func SayHello()
+{
+	Message("Hallo",this());
+}
+
+func DoMagic()
+{
+	Sound("Magic*");
+	ObjectCall(CreateObject(MLGT,0,0),"Activate",this());
+}
+
+func CreateItem(id item)
+{
+	Sound("Magic*");
+	CreateContents(item);
+}</code>
+				<text>Menü für einen Spezialclonk.</text>
+			</example>
+			<example>
+				<code>func Activate(object clonk)
+{
+	// Menü im Clonk mit lokalen Kommandos erzeugen
+	CreateMenu(GetID(), clonk, this());
+	// Menüeinträge erzeugen
+	AddMenuItem(Format("%s Schrumpfen", GetName(clonk)), Format("DoCon(-10,Object(%d))", ObjectNumber(%d)), 0, this(), 0, 0, "Eine Art Jungbrunnen.", 4, clonk);
+}</code>
+				<text>Menü für ein Schrumpfobjekt.</text>
+			</example>
+		</examples>
+								<related>
+												<funclink>CreateMenu</funclink>
+												<funclink>SelectMenuItem</funclink>
+												<funclink>SetMenuDecoration</funclink>
+												<funclink>SetMenuTextProgress</funclink>
+			<funclink>CloseMenu</funclink>
+								</related>
+	</func>
+	<author>jwk</author><date>April 2002</date>
+</funcs>

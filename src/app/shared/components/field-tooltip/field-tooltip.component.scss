@@ -1,0 +1,142 @@
+:host {
+  position: absolute;
+  z-index: 1001;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.tooltip-content {
+  background: #333;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 300px;
+  word-wrap: break-word;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+
+  .tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+  }
+
+  .tooltip-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+    .field-name {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .field-type {
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: #ccc;
+    }
+  }
+
+  .tooltip-description {
+    color: #ddd;
+    line-height: 1.5;
+  }
+}
+
+// Position-specific styles
+:host.tooltip-top {
+  .tooltip-content .tooltip-arrow {
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-color: #333;
+  }
+}
+
+:host.tooltip-bottom {
+  .tooltip-content .tooltip-arrow {
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-color: #333;
+  }
+}
+
+:host.tooltip-left {
+  .tooltip-content .tooltip-arrow {
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left-color: #333;
+  }
+}
+
+:host.tooltip-right {
+  .tooltip-content .tooltip-arrow {
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-right-color: #333;
+  }
+}
+
+// Light theme variant
+:host-context(.light-theme) {
+  .tooltip-content {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    .tooltip-header {
+      border-bottom-color: rgba(0, 0, 0, 0.1);
+
+      .field-name {
+        color: #333;
+      }
+
+      .field-type {
+        background: rgba(0, 0, 0, 0.1);
+        color: #666;
+      }
+    }
+
+    .tooltip-description {
+      color: #555;
+    }
+
+    .tooltip-arrow {
+      filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.1));
+    }
+  }
+
+  &.tooltip-top .tooltip-content .tooltip-arrow {
+    border-top-color: #fff;
+  }
+
+  &.tooltip-bottom .tooltip-content .tooltip-arrow {
+    border-bottom-color: #fff;
+  }
+
+  &.tooltip-left .tooltip-content .tooltip-arrow {
+    border-left-color: #fff;
+  }
+
+  &.tooltip-right .tooltip-content .tooltip-arrow {
+    border-right-color: #fff;
+  }
+}

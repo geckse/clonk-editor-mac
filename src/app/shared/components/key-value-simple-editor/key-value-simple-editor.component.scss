@@ -1,0 +1,212 @@
+.key-value-simple-editor {
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  .field-list {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    
+    &.no-reorder .drag-handle {
+      display: none;
+    }
+    
+    .field-row {
+      display: flex;
+      align-items: center;
+      padding: 4px 0;
+      border-bottom: 1px solid #f1f3f4;
+      position: relative;
+      transition: background-color 0.15s ease;
+      
+      &:hover {
+        background-color: #f8f9fa;
+      }
+      
+      &.valid {
+        border-left: 3px solid #28a745;
+      }
+      
+      &.invalid {
+        border-left: 3px solid #dc3545;
+      }
+      
+      &:not(.documentation-enabled) {
+        border-left: none;
+      }
+      
+      .drag-handle {
+        padding: 8px 4px;
+        cursor: grab;
+        color: #6c757d;
+        user-select: none;
+        min-width: 20px;
+        
+        &:active {
+          cursor: grabbing;
+        }
+      }
+      
+      .cell {
+        position: relative;
+        
+        &.key-cell {
+          flex: 1;
+          min-width: 120px;
+          padding-right: 8px;
+          
+          app-smart-field-input {
+            width: 100%;
+          }
+          
+          input.key-input {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            background: white;
+            transition: border-color 0.15s ease;
+            
+            &:focus {
+              outline: none;
+              border-color: #007bff;
+              box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+            }
+            
+            &::placeholder {
+              color: #999;
+            }
+          }
+        }
+        
+        &.value-cell {
+          flex: 2;
+          padding-right: 8px;
+          
+          input.value-input {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: white;
+            transition: border-color 0.15s ease;
+            
+            &:focus {
+              outline: none;
+              border-color: #007bff;
+              box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+            }
+            
+            &::placeholder {
+              color: #999;
+            }
+          }
+        }
+        
+        &.action-cell {
+          min-width: 40px;
+          display: flex;
+          justify-content: center;
+          
+          .remove-button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+            transition: background-color 0.15s ease;
+            
+            &:hover {
+              background: #c82333;
+            }
+            
+            &:focus {
+              outline: none;
+              box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+            }
+          }
+        }
+      }
+      
+      .separator {
+        padding: 0 8px;
+        font-weight: bold;
+        color: #6c757d;
+        font-size: 16px;
+        min-width: 20px;
+        text-align: center;
+      }
+    }
+  }
+  
+  .add-field-section {
+    padding: 16px 0;
+    text-align: center;
+    
+    .add-field-button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      
+      &:hover {
+        background: #218838;
+      }
+      
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
+      }
+    }
+  }
+}
+
+// Dark theme support
+:host-context(.dark-theme) {
+  .key-value-simple-editor {
+    .field-list .field-row {
+      border-bottom-color: #495057;
+      
+      &:hover {
+        background-color: #495057;
+      }
+      
+      .cell {
+        .key-input,
+        .value-input {
+          background: #495057;
+          border-color: #6c757d;
+          color: #f8f9fa;
+          
+          &:focus {
+            border-color: #007bff;
+          }
+          
+          &::placeholder {
+            color: #adb5bd;
+          }
+        }
+      }
+      
+      .separator {
+        color: #adb5bd;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<div class="frame-toolbar">
+  <div class="toolbar-left">
+    <app-simple-dropdown
+      class="small clear"
+      [options]="editorOptions"
+      [selectedValue]="currentEditor"
+      placeholder="Select Editor"
+      (selectionChange)="onEditorTypeChange($event)">
+    </app-simple-dropdown>
+  </div>
+  
+  <div class="toolbar-right" *ngIf="hasChanges">
+    <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+    <button type="button" class="btn btn-save" (click)="onSave()">Save</button>
+  </div>
+</div>

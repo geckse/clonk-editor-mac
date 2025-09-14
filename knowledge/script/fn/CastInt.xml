@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+	<func>
+		<title>CastInt</title>
+		<category>Variablen</category>
+		<version>4.9.6.0 CR</version>
+		<syntax>
+			<rtype>int</rtype>
+			<params>
+				<param><type>any</type><name>Value</name><desc>Zu konvertierende Daten.</desc></param>
+			</params>
+		</syntax>
+		<desc>Wandelt einen Wert in einen Integer um.</desc>
+		<related>
+			<funclink>CastAny</funclink>
+			<funclink>CastBool</funclink>
+			<funclink>CastC4ID</funclink>
+		</related>
+	</func>
+	<author>Fulgen</author><date>August 2016</date>
+</funcs>

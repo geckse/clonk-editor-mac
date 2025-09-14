@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+	<func>
+		<title>AddEvaluationData</title>
+		<category>Global</category>
+		<version>4.9.6.0 CR</version>
+		<syntax>
+			<rtype>void</rtype>
+			<params>
+				<param><type>string</type><name>szData</name><desc>Text, der anzeigt wird.</desc></param>
+			</params>
+		</syntax>
+		<desc>Zeigt szData im Auswertungsdialog am Ende der Runde an. </desc>
+		 
+		 <related>
+			<funclink>HideSettlementScoreInEvaluation</funclink>
+		 </related>
+	</func>
+	<author>Fulgen, Clonk Wiki</author><date>Juli 2016</date>
+</funcs>

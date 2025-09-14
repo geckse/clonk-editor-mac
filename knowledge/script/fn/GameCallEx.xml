@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+	<func>
+		<title>GameCallEx</title>
+		<category>Script</category><subcat>Funktionsaufruf</subcat>
+		<version>4.6.5.0 CP</version>
+		<syntax>
+			<rtype>any</rtype>
+			<params>
+				<param><type>string</type><name>szFunction</name><desc>Name der Funktion im Script</desc></param>
+				<param><type>any</type><name>...</name><desc>Bis zu neun Parameter, die an die Funktion Script übergeben werden</desc><optional /></param>
+			</params>
+		</syntax>
+		<desc>Ruft szFunction im Szenario-Script und in Spielzielen, Spielregeln und Umweltobjekten auf. Sollte die Funktion nicht vorhanden sein, gibt die Funktion Null zurück und verursacht keine Fehlermeldung.</desc>
+		<examples>
+			<example>
+				<code>GameCallEx("InitializePlayer",0);</code>
+				<text>Lässt das Script nochmal die Initialisierung für den ersten Spieler ausführen.</text>
+			</example>
+		</examples>
+		<related>
+			<funclink>Call</funclink>
+			<funclink>ObjectCall</funclink>
+			<funclink>DefinitionCall</funclink>
+			<funclink>GameCall</funclink>
+		</related>
+	</func>
+	<author>Fulgen</author><date>Juli 2016</date>
+</funcs>

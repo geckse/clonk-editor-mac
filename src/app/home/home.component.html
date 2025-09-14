@@ -3,15 +3,31 @@
   <div class="main-frame">
 
     <div class="left-bar box scroll-y">
-      <app-file-list [files]="files" (selected)="onFileSelected($event)"></app-file-list>
+      <app-file-list [files]="files" (selected)="selectFile($event)" (open)="openFile($event)"></app-file-list>
     </div>
     
     <main class="editor">
       <div class="preview box">
 
+        <div class="preview-content local-file-preview" *ngIf="filePreviewSrc">
+          <img [src]="this.filePreviewSrc" alt="">
+        </div>
+        
       </div>
       <div class="frame box">
-        <h1>test</h1>
+
+        <app-frame-toolbar
+          [currentEditor]="editor"
+          [hasChanges]="hasUnsavedChanges"
+          (editorTypeChange)="onEditorTypeChange($event)"
+          (save)="saveFile()"
+          (cancel)="cancelChanges()">
+        </app-frame-toolbar>
+
+        <div class="frame-content scroll-y">
+          <app-text-editor *ngIf="editor === 'basic'" [content]="fileContent" (textChange)="onContentChange($event)"></app-text-editor>
+          <app-key-value-groups *ngIf="editor === 'key-value-simple'" [content]="fileContent" (contentChange)="onContentChange($event)"></app-key-value-groups>  
+        </div>
       </div>
     </main>
 

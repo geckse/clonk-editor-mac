@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+  <func>
+    <title>GetValues</title>
+    <category>Variablen</category>
+    <version>4.9.10.7 [334] LC</version>
+    <syntax>
+      <rtype>array</rtype>
+      <params>
+        <param><type>map</type><name>map</name><desc>map, von der die Werte abgefragt werden</desc></param>
+      </params>
+    </syntax>
+    <desc>Gibt ein Array aller zurzeit gesetzten Werte der map zurück.</desc>
+    <examples>
+      <example>
+        <code>GetValues({ X = 10, Y = 50 });</code>
+        <text>Gibt [10, 50] zurück.</text>
+      </example>
+    </examples>
+    <related>
+      <emlink href="script/Typechecks.html">Datentypen</emlink>
+      <funclink>GetKeys</funclink>
+    </related>
+  </func>
+  <author>Der Tod</author><date>Oktober 2019</date>
+</funcs>

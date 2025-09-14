@@ -1,6 +1,21 @@
-<ul>
-  <li *ngFor="let file of files" (click)="onSelect(file)">
-    <img src="{{ file.icon }}" alt="file" />
-    {{ file.name }}
+<ul #fileListContainer [attr.tabindex]="isRoot ? '0' : null">
+  <li *ngFor="let file of files; let i = index;">
+    
+    <div #fileItem class="inner" [ngClass]="{'is-loading': isLoading(file), 'is-selected': isSelected(file), 'is-highlighted': isHighlighted(i)}" (click)="onSelect($event,file)" (dblclick)="onDoubleClick($event,file)" (contextmenu)="onRightClick($event, file)">
+
+      
+      <div class="icon-container">
+        <img src="{{ file.icon }}" alt="file" />
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <span class="file-name" *ngIf="fileNameEdit?.name != file.name">
+        {{ file.name }}
+      </span>
+
+      <input #fileNameEditInput [(ngModel)]="fileNameEditValue" class="file-name-input" type="text" (blur)="onFileNameChange()" (keyup.enter)="onFileNameChange()" (keyup.escape)="exitFileNameChange()" *ngIf="fileNameEdit?.name == file.name">
+    </div>
+
+    <app-file-list *ngIf="file.subfiles && file.subfiles.length > 0" class="sub-files" [files]="file.subfiles" [isRoot]="false" [globalSelectedFile]="isRoot ? selectedFile : globalSelectedFile" (selected)="onSelect($event)" (open)="onOpen($event)"></app-file-list>
+
   </li>
 </ul>

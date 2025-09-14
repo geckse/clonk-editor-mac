@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+	<func>
+		<title>CastAny</title>
+		<category>Variablen</category>
+		<version>4.9.6.0 CR</version>
+		<syntax>
+			<rtype>any</rtype>
+			<params>
+				<param><type>any</type><name>Value</name><desc>Zu konvertierende Daten.</desc></param>
+			</params>
+		</syntax>
+		<desc>Wandelt einen Wert in einen Wert vom Typ any um.</desc>
+		<remark>Diese Funktion gibt den übergebenen Wert zurück; es ist daher zu vermuten, dass sie in früheren Clonk-Version eine andere Bedeutung gehabt hatte.</remark>
+		<related>
+			<funclink>CastBool</funclink>
+			<funclink>CastInt</funclink>
+			<funclink>CastC4ID</funclink>
+		</related>
+	</func>
+	<author>Fulgen</author><date>August 2016</date>
+</funcs>

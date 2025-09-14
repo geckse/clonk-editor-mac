@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<!DOCTYPE funcs SYSTEM "../../../clonk.dtd">
+<?xml-stylesheet type="text/xsl" href="../../../clonk.xsl"?>
+<funcs>
+  <func>
+    <title>GetPath</title>
+    <category>Landschaft</category>
+    <version>4.9.10.7 [334] LC</version>
+    <syntax>
+      <rtype>map</rtype>
+      <params>
+        <param>
+          <type>int</type>
+          <name>iFromX</name>
+          <desc>X-Koordinate der Startposition</desc>
+        </param>
+        <param>
+          <type>int</type>
+          <name>iFromY</name>
+          <desc>Y-Koordinate der Startposition</desc>
+        </param>
+        <param>
+          <type>int</type>
+          <name>iToX</name>
+          <desc>X-Koordinate der Zielposition</desc>
+        </param>
+        <param>
+          <type>int</type>
+          <name>iToY</name>
+          <desc>Y-Koordinate der Zielposition</desc>
+        </param>
+      </params>
+    </syntax>
+
+    <desc>Sucht mittels des auch für die Clonk-Wegfindung benutzten Algorithmus
+          einen Weg zwischen zwei Punkten der Landschaft und gibt eine Map mit
+          Wegpunkten und Länge zurück. Wird kein Weg gefunden, wird nil zurückgegeben.
+          Die zurückgegebene Map hat folgende Struktur:
+          <table>
+            <rowh><col>Schlüssel</col><col>Datentyp</col><col>Beschreibung</col></rowh>
+            <row><col>Length</col><col>int</col><col>Länge des gefundenen Weges, wie bei <funclink>GetPathLength</funclink></col></row>
+            <row><col>Waypoints</col><col>array</col><col>Array mit Wegpunkten</col></row>
+          </table>
+
+          Die Wegpunkte haben dabei folgende Struktur:
+          <table>
+            <rowh><col>Schlüssel</col><col>Datentyp</col><col>Beschreibung</col></rowh>
+              <row><col>X</col><col>int</col><col>X-Koordinate des Wegpunkts</col></row>
+              <row><col>Y</col><col>int</col><col>Y-Koordinate des Wegpunkts</col></row>
+              <row><col>TransferTarget</col><col>object</col><col>Transferzielobjekt. nur gesetzt, falls vorhanden.</col></row>
+          </table>
+   </desc>
+   <remark>Diese Funktion kann aufgrund der Mapsyntax nur ab #strict 3 verwendet werden. In älteren Versionen kann <funclink>GetPathLength</funclink> verwendet werden.</remark>
+
+    <examples>
+      <example>
+        <code>var path = GetPath(<funclink>GetX</funclink>(), <funclink>GetY</funclink>(), <funclink>GetX</funclink>(<funclink>FindBase</funclink>(<funclink>GetOwner</funclink>())), <funclink>GetY</funclink>(<funclink>FindBase</funclink>(<funclink>GetOwner</funclink>())));
+<funclink>if</funclink> (path)
+{
+    <funclink>Log</funclink>("Anzahl der Wegpunkte: %d, Pfadlänge: %d", <funclink>GetLength</funclink>(path.Waypoints), path.Length);
+}
+else
+{
+    <funclink>Log</funclink>("Kein Pfad gefunden!");
+}
+        </code>
+        <text>Loggt die Anzahl der Wegpunkte und die Pfadlänge zur ersten Basis des Besitzers des aufrufenden Objekts, falls ein Weg gefunden wurde.</text>
+      </example>
+    </examples>
+    <related>
+        <funclink>GetPathLength</funclink>
+    </related>
+  </func>
+  <author>Fulgen</author><date>Oktober 2019</date>
+</funcs>
